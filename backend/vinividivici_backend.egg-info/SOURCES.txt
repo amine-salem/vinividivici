@@ -1,0 +1,12 @@
+pyproject.toml
+app/__init__.py
+app/main.py
+app/modules/__init__.py
+app/platform/__init__.py
+app/platform/health.py
+tests/test_health.py
+vinividivici_backend.egg-info/PKG-INFO
+vinividivici_backend.egg-info/SOURCES.txt
+vinividivici_backend.egg-info/dependency_links.txt
+vinividivici_backend.egg-info/requires.txt
+vinividivici_backend.egg-info/top_level.txt
