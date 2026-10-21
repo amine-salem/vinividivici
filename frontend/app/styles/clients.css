@@ -1,0 +1,99 @@
+/* ===== Clients section ===== */
+.clients {
+  position: relative;
+  background: #0a0a0a;
+  color: #ffffff;
+  margin: -1px -2rem 0;
+  padding: 8rem 2rem 6rem;
+}
+
+@media (min-width: 768px) {
+  .clients {
+    margin: -1px -3rem 0;
+    padding: 10rem 3rem 8rem;
+  }
+}
+
+.clients-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.clients-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d40000;
+}
+
+.clients-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .clients-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6rem 4rem;
+  }
+}
+
+.client-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.client-card:hover {
+  opacity: 0.75;
+  transform: translateY(-4px);
+}
+
+.client-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  max-width: 200px;
+}
+
+.client-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.4);
+  transition: filter 0.4s ease;
+}
+
+.client-card:hover .client-logo-img {
+  filter: grayscale(0) brightness(1);
+}
+
+.client-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-align: center;
+}
+
+.client-category {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #737373;
+  text-align: center;
+}

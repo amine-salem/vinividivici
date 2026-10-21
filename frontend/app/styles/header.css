@@ -1,0 +1,189 @@
+/* ===== Header ===== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    background: #ffffff;
+    color: #0a0a0a;
+}
+
+@media (min-width: 768px) {
+    .site-header {
+        padding: 1.75rem 3rem;
+    }
+}
+.logo-dot {
+  color: #d40000;
+}
+
+/* Wordmark */
+.site-header .logo {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-header .logo-text {
+  position: relative;
+  display: inline-block;
+  font-size: 1.25rem; /* <--- Increased size from 0.6875rem */
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff; /* Keep it white by default on dark */
+  line-height: 1;
+}
+
+/* Add this new rule for the red Tunisia */
+.logo-tunisia {
+  color: #d40000;
+  text-transform: none; /* Optional: makes it Title case instead of UPPERCASE */
+}
+.site-header .logo-text::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: #d40000;
+    transform: scaleX(0);
+    transform-origin: var(--transform-origin-start);
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.site-header .logo-text:hover::after {
+    transform: scaleX(1);
+}
+
+/* Nav */
+.site-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-left: auto; /* <--- PUSHES NAV TO THE RIGHT */
+  margin-right: 2rem; /* Space between nav and language/cart */
+}
+
+.site-nav a {
+    position: relative;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: inherit;
+    padding: 0.25rem 0;
+}
+
+.site-nav a::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: #d40000;
+    transform: scaleX(0);
+    transform-origin: var(--transform-origin-start);
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.site-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Actions */
+.site-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.site-actions a {
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.site-actions a:hover {
+    opacity: 0.6;
+}
+
+/* Language switch */
+.lang-switch {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* ===== Cart icon (clean, no circle, no background) ===== */
+.cart-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.cart-link:hover {
+    opacity: 0.6;
+}
+
+.cart-link svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+
+/* ===== Transparent header (homepage only) ===== */
+.site-header--transparent {
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    background: transparent;
+    border-bottom: none;
+    color: #ffffff;
+    padding-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .site-header--transparent {
+        padding-top: 2.5rem;
+    }
+}
+
+/* Wordmark on transparent header */
+.site-header--transparent .logo-text {
+    color: #ffffff;
+}
+
+.site-header--transparent .logo-text::after {
+    background: #ffffff;
+}
+
+/* Nav and actions on transparent header */
+.site-header--transparent .site-nav a {
+    color: #ffffff;
+}
+
+.site-header--transparent .site-nav a::after {
+    background: #ffffff;
+}
+
+.site-header--transparent .site-actions a {
+    color: #ffffff;
+}
+
+/* Cart on transparent header — white icon, no background */
+.site-header--transparent .cart-link {
+    color: #ffffff;
+    background: none;
+}
