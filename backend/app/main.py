@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from app.platform.config import Settings, get_settings
+from app.platform.errors import register_error_handlers
 from app.platform.health import router as health_router
 
 
@@ -16,5 +17,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         openapi_url="/api/v1/openapi.json" if show_docs else None,
     )
     app.state.settings = settings
+    register_error_handlers(app)
     app.include_router(health_router, prefix="/api")
     return app
