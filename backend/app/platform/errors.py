@@ -1,17 +1,19 @@
 """Central error handling: every error leaves the API in one format (RFC 9457 problem details)."""
 
-import logging
 import uuid
 from http import HTTPStatus
 from typing import Any
 
+import structlog
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-logger = logging.getLogger(__name__)
+from app.platform.request_context import REQUEST_ID_HEADER
+
+logger = structlog.get_logger(__name__)
 
 PROBLEM_JSON = "application/problem+json"
 
@@ -106,18 +108,20 @@ def _problem(
     detail: str,
     errors: list[FieldError] | None = None,
 ) -> JSONResponse:
+    request_id = _request_id(request)
     body = ProblemDetail(
         title=HTTPStatus(status).phrase,
         status=status,
         detail=detail,
         code=code,
-        request_id=_request_id(request),
+        request_id=request_id,
         errors=errors,
     )
     return JSONResponse(
         status_code=status,
         content=body.model_dump(exclude_none=True),
         media_type=PROBLEM_JSON,
+        headers={REQUEST_ID_HEADER: request_id},
     )
 
 
@@ -154,9 +158,8 @@ async def _handle_http_error(request: Request, exc: Exception) -> JSONResponse:
 
 
 async def _handle_unexpected_error(request: Request, exc: Exception) -> JSONResponse:
-    request_id = _request_id(request)
-    logger.exception("Unhandled error", extra={"request_id": request_id})
-    return _problem(request, 500, "internal_error", AppError.default_detail)
+    logger.exception("unhandled_error")
+    return _problem(request, 500, "internal_error", AppError.default_detail)    
 
 
 def register_error_handlers(app: FastAPI) -> None:
