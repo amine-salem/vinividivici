@@ -87,6 +87,11 @@ class Forbidden(AppError):
     code = "forbidden"
     default_detail = "You are not allowed to do this."
 
+class ServiceUnavailable(AppError):
+    status_code = 503
+    code = "service_unavailable"
+    default_detail = "The service is temporarily unavailable."
+
 
 # ---------------------------------------------------------------------------- helpers
 
