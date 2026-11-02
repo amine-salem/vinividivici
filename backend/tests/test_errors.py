@@ -11,6 +11,7 @@ from app.platform.errors import (
     Forbidden,
     NotFound,
     Unauthorized,
+    ServiceUnavailable,
 )
 
 
@@ -26,6 +27,7 @@ def make_app() -> FastAPI:
             "business": BusinessRuleViolation(),
             "unauthorized": Unauthorized(),
             "forbidden": Forbidden(),
+            "unavailable": ServiceUnavailable(),
             "custom": BusinessRuleViolation("Only 2 left in stock.", code="out_of_stock"),
         }
         raise errors[name]
@@ -56,6 +58,7 @@ def client() -> TestClient:
         ("business", 409, "business_rule_violation"),
         ("unauthorized", 401, "unauthorized"),
         ("forbidden", 403, "forbidden"),
+        ("unavailable", 503, "service_unavailable"),
     ],
 )
 def test_app_errors_become_problem_details(
