@@ -24,6 +24,10 @@ export const translations = {
     portfolio: "Portfolio",
     inquiry: "Demande",
     sendInquiry: "Envoyer la demande",
+    viniHeroKicker: "VINI — LE STUDIO",
+    viniHeroTitle: "AUDIOVISUEL & MARKETING",
+    viniHeroSubtitle: "Nous créons du contenu qui capte l'attention et raconte votre histoire.",
+    viniHeroCta: "DÉMARRER UN PROJET",
 
     // VIDI
     shop: "Boutique",
@@ -49,7 +53,7 @@ export const translations = {
     orderConfirmed: "Commande confirmée",
     orderNumber: "Numéro de commande",
     weWillCallYou: "Nous vous appellerons pour confirmer.",
-    
+
     // VICI
     comingSoon: "Bientôt.",
     viciKicker: "LE PROCHAIN CHAPITRE",
@@ -85,7 +89,7 @@ export const translations = {
     vidi: "VIDI",
     vici: "VICI",
     cart: "السلة",
-
+    
     // Homepage
     brandStatement: "استوديو. متجر. فصل قادم.",
     viniTagline: "استوديو سمعي بصري وتسويق",
@@ -101,6 +105,10 @@ export const translations = {
     portfolio: "الأعمال",
     inquiry: "طلب",
     sendInquiry: "إرسال الطلب",
+    viniHeroKicker: "VINI — الاستوديو",
+    viniHeroTitle: "سمعي بصري وتسويق",
+    viniHeroSubtitle: "نصنع محتوى يجذب الانتباه ويروي قصتك.",
+    viniHeroCta: "ابدأ مشروعاً",
 
     // VIDI
     shop: "المتجر",

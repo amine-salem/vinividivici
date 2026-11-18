@@ -2,32 +2,40 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { t, type Lang } from "@/lib/i18n";
 import { LangSwitch } from "./LangSwitch";
 
 export function Header({ lang }: { lang: Lang }) {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Check if we are on a dark page
   const isHome = pathname === `/${lang}`;
-  const isVici = pathname === `/${lang}/vici`;
-  const isDarkPage = isHome || isVici;
+  const isVici = pathname?.includes(`/${lang}/vici`);
+  const isVini = pathname?.includes(`/${lang}/vini`); 
+  const isDarkPage = isHome || isVici || isVini;
+
+  const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <header className={`site-header ${isDarkPage ? "site-header--transparent" : ""}`}>
-      <Link href={`/${lang}`} className="logo">
-        <span className="logo-text">
+      <Link href={`/${lang}`} className="logo" onClick={closeMenu}>
+        <span className="logo-text" suppressHydrationWarning>
           VINIVIDIVICI<span className="logo-tunisia">.Tunisia</span>
         </span>
       </Link>
 
-      <nav className="site-nav">
-        <Link href={`/${lang}/vini`}>{t(lang, "vini")}</Link>
-        <Link href={`/${lang}/vidi`}>{t(lang, "vidi")}</Link>
-        <Link href={`/${lang}/vici`}>{t(lang, "vici")}</Link>
+      {/* Desktop Nav */}
+      <nav className={`site-nav ${isMobileMenuOpen ? "is-open" : ""}`}>
+        <Link href={`/${lang}/vini`} onClick={closeMenu}>{t(lang, "vini")}</Link>
+        <Link href={`/${lang}/vidi`} onClick={closeMenu}>{t(lang, "vidi")}</Link>
+        <Link href={`/${lang}/vici`} onClick={closeMenu}>{t(lang, "vici")}</Link>
       </nav>
 
       <div className="site-actions">
         <LangSwitch lang={lang} />
-        {/* The Cart Icon stays exactly as it is */}
+        
         <Link
           href={`/${lang}/vidi/cart`}
           className="cart-link"
@@ -50,6 +58,19 @@ export function Header({ lang }: { lang: Lang }) {
             <path d="M16 10a4 4 0 0 1-8 0" />
           </svg>
         </Link>
+
+        {/* Mobile Hamburger Button */}
+        <button 
+          className="mobile-menu-btn" 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <div className={`hamburger ${isMobileMenuOpen ? "is-active" : ""}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
       </div>
     </header>
   );
