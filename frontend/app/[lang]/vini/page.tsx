@@ -6,13 +6,7 @@ import { t, type Lang } from "@/lib/i18n";
 import { mockProjects, mockServices } from "@/lib/mock-vini";
 
 // Fake services for now. Later, this will come from Amine's API.
-const FAKE_SERVICES = [
-  { value: "video", label: "Video Production" },
-  { value: "photo", label: "Photography" },
-  { value: "marketing", label: "Marketing & Strategy" },
-  { value: "social", label: "Social Media Management" },
-  { value: "podcast", label: "Podcast Recording" },
-];
+  
 
 export default function ViniPage({
   params,
@@ -22,6 +16,13 @@ export default function ViniPage({
   const resolvedParams = use(params);
   const lang = resolvedParams.lang as Lang;
   
+  const FAKE_SERVICES = [
+    { value: "video", label: lang === "fr" ? "Production Vidéo" : "إنتاج فيديو" },
+    { value: "photo", label: lang === "fr" ? "Photographie" : "تصوير" },
+    { value: "marketing", label: lang === "fr" ? "Marketing & Stratégie" : "تسويق واستراتيجية" },
+    { value: "social", label: lang === "fr" ? "Gestion des réseaux sociaux" : "إدارة وسائل التواصل" },
+    { value: "branding", label: lang === "fr" ? "Branding & Identité visuelle" : "العلامة التجارية والهوية البصرية" },
+  ];
   // State to hold the form data
   const [formData, setFormData] = useState({
     name: "",
@@ -58,7 +59,7 @@ export default function ViniPage({
       <section className="vini-services">
         <div className="section-header">
           <span className="vini-kicker">{t(lang, "services")}</span>
-          <h2 className="portfolio-title">Ce que nous faisons</h2>
+          <h2 className="portfolio-title">{t(lang, "whatWeDo")}</h2>
         </div>
         
         <div className="services-grid">
@@ -75,7 +76,7 @@ export default function ViniPage({
       <section className="vini-portfolio">
         <div className="portfolio-header">
           <span className="vini-kicker">{t(lang, "portfolio")}</span>
-          <h2 className="portfolio-title">Travail sélectionné</h2>
+          <h2 className="portfolio-title">{t(lang, "selectedWork")}</h2>
         </div>
 
         <div className="portfolio-grid">
@@ -87,7 +88,7 @@ export default function ViniPage({
             >
               <div className="portfolio-image-wrapper">
                 <img 
-                  src={project.image} 
+                  src={project.coverImage} // <--- CHANGED FROM project.image
                   alt={lang === "fr" ? project.title_fr : project.title_ar} 
                   className="portfolio-image" 
                 />
@@ -114,14 +115,14 @@ export default function ViniPage({
             {t(lang, "sendInquiry")}
           </h2>
           <p className="text-center text-gray-400 mt-4 mb-8">
-            Tell us about your project and we'll get back to you.
+            {t(lang, "formSubtitle")}
           </p>
           
           <form className="vini-form" onSubmit={(e) => e.preventDefault()}>
             {/* Name & Phone Row */}
             <div className="vini-form-row">
               <div className="vini-field">
-                <label>Full Name</label>
+                <label>{t(lang, "fullName")}</label>
                 <input 
                   type="text" 
                   name="name" 
@@ -132,7 +133,7 @@ export default function ViniPage({
                 />
               </div>
               <div className="vini-field">
-                <label>Phone</label>
+                <label>{t(lang, "phone")}</label>
                 <input 
                   type="tel" 
                   name="phone" 
@@ -147,7 +148,7 @@ export default function ViniPage({
             {/* Email & Service Row */}
             <div className="vini-form-row">
               <div className="vini-field">
-                <label>Email (optional)</label>
+                <label>{t(lang, "emailOptional")}</label>
                 <input 
                   type="email" 
                   name="email" 
@@ -157,14 +158,14 @@ export default function ViniPage({
                 />
               </div>
               <div className="vini-field">
-                <label>Service of interest</label>
+                <label>{t(lang, "serviceInterest")}</label>
                 <select 
                   name="service" 
                   value={formData.service} 
                   onChange={handleChange} 
                   required
                 >
-                  <option value="" disabled>Select a service</option>
+                  <option value="" disabled>{t(lang, "selectService")}</option>
                   {FAKE_SERVICES.map((service) => (
                     <option key={service.value} value={service.value}>
                       {service.label}
@@ -176,11 +177,11 @@ export default function ViniPage({
 
             {/* Message */}
             <div className="vini-field vini-field-full">
-              <label>Message</label>
+              <label>{t(lang, "message")}</label>
               <textarea 
                 name="message" 
                 rows={4} 
-                placeholder="Tell us about your project..." 
+                placeholder={t(lang, "messagePlaceholder")} 
                 value={formData.message}
                 onChange={handleChange}
                 required 

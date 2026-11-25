@@ -29,6 +29,17 @@ export const translations = {
     viniHeroSubtitle: "Nous créons du contenu qui capte l'attention et raconte votre histoire.",
     viniHeroCta: "DÉMARRER UN PROJET",
 
+    whatWeDo: "Ce que nous faisons",
+    selectedWork: "Travail sélectionné",
+    formSubtitle: "Parlez-nous de votre projet et nous vous recontacterons.",
+    fullName: "Nom complet",
+    phone: "Téléphone",
+    emailOptional: "Email (facultatif)",
+    serviceInterest: "Service souhaité",
+    selectService: "Sélectionnez un service",
+    message: "Message",
+    messagePlaceholder: "Parlez-nous de votre projet...",
+
     // VIDI
     shop: "Boutique",
     addToCart: "Ajouter au panier",
@@ -42,8 +53,6 @@ export const translations = {
     confirmOrder: "Confirmer la commande — paiement à la livraison",
 
     // Checkout form
-    fullName: "Nom complet",
-    phone: "Téléphone",
     governorate: "Gouvernorat",
     city: "Ville",
     address: "Adresse",
@@ -110,6 +119,17 @@ export const translations = {
     viniHeroSubtitle: "نصنع محتوى يجذب الانتباه ويروي قصتك.",
     viniHeroCta: "ابدأ مشروعاً",
 
+    whatWeDo: "ما نقوم به",
+    selectedWork: "أعمال مختارة",
+    formSubtitle: "أخبرنا عن مشروعك وسنعاود الاتصال بك.",
+    fullName: "الاسم الكامل",
+    phone: "الهاتف",
+    emailOptional: "البريد الإلكتروني (اختياري)",
+    serviceInterest: "الخدمة المطلوبة",
+    selectService: "اختر خدمة",
+    message: "الرسالة",
+    messagePlaceholder: "أخبرنا عن مشروعك...",
+
     // VIDI
     shop: "المتجر",
     addToCart: "أضف إلى السلة",
@@ -123,8 +143,6 @@ export const translations = {
     confirmOrder: "تأكيد الطلب — الدفع عند الاستلام",
 
     // Checkout form
-    fullName: "الاسم الكامل",
-    phone: "الهاتف",
     governorate: "الولاية",
     city: "المدينة",
     address: "العنوان",

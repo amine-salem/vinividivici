@@ -35,8 +35,14 @@ export const mockProjects = [
     title_ar: "جلسة Good Vibes",
     category_fr: "Podcast",
     category_ar: "بودكاست",
-    image: "/pillars/vini1.jpeg", // Reusing your pillar image for now
-    videoUrl: "https://vimeo.com/123456", // Fake link
+    coverImage: "/pillars/vini1.jpeg", // Make sure this is coverImage, not image
+    videoUrl: "https://vimeo.com/123456", 
+    images: [
+      "/pillars/vini1.jpeg",
+      "/pillars/vidi.jpeg",
+      "/pillars/vici.jpeg",
+      "/vini-hero.jpg"
+    ],
   },
   {
     id: "p_02",
@@ -45,7 +51,11 @@ export const mockProjects = [
     title_ar: "فيلم العلامة التجارية الحضرية",
     category_fr: "Vidéo",
     category_ar: "فيديو",
-    image: "/pillars/vidi.jpeg",
+    coverImage: "/pillars/vidi.jpeg",
     videoUrl: "https://vimeo.com/123457",
+    images: [
+      "/pillars/vidi.jpeg",
+      "/pillars/vini1.jpeg"
+    ],
   },
 ];

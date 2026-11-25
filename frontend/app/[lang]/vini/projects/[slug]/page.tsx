@@ -20,9 +20,9 @@ export default function ProjectPage({
   // If the project doesn't exist, show a 404-style message
   if (!project) {
     return (
-      <div className="project-not-found">
+      <div className="project-not-found" style={{ minHeight: "60vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "#fff" }}>
         <h1>Project not found</h1>
-        <Link href={`/${lang}/vini`} className="btn-primary">
+        <Link href={`/${lang}/vini`} className="btn-primary" style={{ marginTop: "2rem" }}>
           Back to Studio
         </Link>
       </div>
@@ -35,7 +35,7 @@ export default function ProjectPage({
   return (
     <div className="project-detail-page">
       {/* Hero Section */}
-      <div className="project-hero" style={{ backgroundImage: `url(${project.image})` }}>
+      <div className="project-hero" style={{ backgroundImage: `url(${project.coverImage})` }}>
         <div className="project-hero-overlay">
           <span className="vini-kicker">{category}</span>
           <h1 className="project-title">{title}</h1>
@@ -44,16 +44,21 @@ export default function ProjectPage({
 
       {/* Content Section */}
       <div className="project-content">
-        <div className="project-video-wrapper">
-          <iframe
-            src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}`}
-            title={title}
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
+        
+        {/* Video Embed (If it exists) */}
+        {project.videoUrl && (
+          <div className="project-video-wrapper">
+            <iframe
+              src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}`}
+              title={title}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
 
+        {/* Info Section */}
         <div className="project-info">
           <h2>About this project</h2>
           <p>
@@ -61,6 +66,23 @@ export default function ProjectPage({
             This project focused on high-quality visuals and a compelling narrative that 
             resonates with their target audience.
           </p>
+        </div>
+
+        {/* Photo Gallery Grid */}
+        {project.images && project.images.length > 0 && (
+          <div className="project-gallery">
+            <h3 className="gallery-title">Gallery</h3>
+            <div className="gallery-grid">
+              {project.images.map((img, index) => (
+                <div key={index} className="gallery-item">
+                  <img src={img} alt={`${title} - image ${index + 1}`} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div>
           <Link href={`/${lang}/vini`} className="btn-outline">
             ← Back to Portfolio
           </Link>
