@@ -13,6 +13,8 @@ from app.platform.health import router as health_router
 from app.platform.logs import configure_logging
 from app.platform.request_context import request_context_middleware
 
+from app.modules.vini.public import router as vini_public_router
+
 
 def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings or get_settings()
@@ -49,4 +51,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     register_error_handlers(app)
     app.add_middleware(BaseHTTPMiddleware, dispatch=request_context_middleware)
     app.include_router(health_router, prefix="/api")
+    app.include_router(vini_public_router, prefix="/api/v1")
     return app

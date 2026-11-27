@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import Annotated
 
-from fastapi import Depends, Query
+from fastapi import Depends, Path, Query
 from fastapi.routing import APIRoute
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -29,6 +29,17 @@ class Lang(StrEnum):
 
 
 LangQuery = Annotated[Lang, Query(description="Language of the returned texts.")]
+
+def pick(lang: Lang, fr: str, ar: str) -> str:
+    """The text in the requested language."""
+    return fr if lang is Lang.FR else ar
+
+
+SLUG_PATTERN = r"^[a-z0-9]+(?:-[a-z0-9]+)*$"
+SlugPath = Annotated[
+    str,
+    Path(pattern=SLUG_PATTERN, max_length=100, description="URL-friendly name, e.g. sac-camera-urbain."),
+]
 
 
 # --- Lists and pages --------------------------------------------------------------
