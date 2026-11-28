@@ -19,6 +19,14 @@ export const translations = {
     enterVidi: "Entrer",
     enterVici: "Découvrir",
 
+    homeHeroTitle1:"Studio créatif",
+    homeHeroTitle2: "UN ESPACE", // FR
+    homeHeroTitle3: "POUR LES",   // FR
+    homeHeroTitle4: "CRÉATEURS",  // FR
+    watchVideo: "REGARDER LA VIDÉO", // FR
+    exploreStudio: "EXPLORER LE STUDIO", // FR
+    ourServices: "NOS SERVICES", // FR
+
     // VINI
     services: "Services",
     portfolio: "Portfolio",
@@ -39,6 +47,10 @@ export const translations = {
     selectService: "Sélectionnez un service",
     message: "Message",
     messagePlaceholder: "Parlez-nous de votre projet...",
+
+    aboutProject: "À propos de ce projet",
+    gallery: "Galerie",
+    backToPortfolio: "Retour au portfolio",
 
     // VIDI
     shop: "Boutique",
@@ -109,6 +121,15 @@ export const translations = {
     enterVici: "اكتشف",
     heroLabel: "استوديو إبداعي — تونس",
 
+    homeHeroTitle1: "استوديو إبداعي",
+    homeHeroTitle2: "مساحة", // AR
+    homeHeroTitle3: "", // AR
+    homeHeroTitle4: "للمبدعين", // AR
+    watchVideo: "شاهد الفيديو", // AR
+    exploreStudio: "استكشف الاستوديو", // AR
+    ourServices: "خدماتنا", // AR
+    
+
     // VINI
     services: "الخدمات",
     portfolio: "الأعمال",
@@ -129,6 +150,10 @@ export const translations = {
     selectService: "اختر خدمة",
     message: "الرسالة",
     messagePlaceholder: "أخبرنا عن مشروعك...",
+
+    aboutProject: "عن هذا المشروع",
+    gallery: "معرض الصور",
+    backToPortfolio: "العودة إلى الأعمال",
 
     // VIDI
     shop: "المتجر",
