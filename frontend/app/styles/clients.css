@@ -1,47 +1,68 @@
 /* ===== Clients section ===== */
 .clients {
+  padding: 8rem 5% 6rem; 
   position: relative;
   background: #0a0a0a;
   color: #ffffff;
-  margin: -1px -2rem 0;
-  padding: 8rem 2rem 6rem;
 }
 
 @media (min-width: 768px) {
   .clients {
-    margin: -1px -3rem 0;
-    padding: 10rem 3rem 8rem;
+    padding: 10rem 5% 8rem;
   }
 }
 
+/* Aligns header based on language */
 .clients-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 3rem;
+  flex-direction: column;
+  width: 100%; /* Forces the container to stretch full width */
+  align-items: flex-start; /* Left for French */
+  text-align: left;
+  margin-bottom: 4rem;
 }
 
+[dir="rtl"] .clients-header {
+  align-items: flex-end; /* Pushes to the right for Arabic */
+  text-align: right;
+}
+
+/* MUCH BIGGER TITLE */
 .clients-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Made it even bigger for impact */
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #d40000;
+  color: #d40000; 
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+  /* Add this to ensure it's not constrained */
+  width: 100%; 
 }
 
+/* Optional Subtitle (if you are using it) */
+.clients-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #a3a3a3;
+  margin: 0;
+}
+
+/* Grid Setup */
 .clients-grid {
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4rem 2rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem 2rem;
+  max-width: 1400px; 
 }
 
 @media (min-width: 768px) {
   .clients-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 6rem 4rem;
+    gap: 4rem;
   }
 }
 
@@ -56,24 +77,35 @@
 }
 
 .client-card:hover {
-  opacity: 0.75;
-  transform: translateY(-4px);
+  opacity: 1;
+  transform: translateY(-5px);
 }
 
+/* Logo Container (Kept at a good size) */
 .client-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  aspect-ratio: 1 / 1;
-  max-width: 200px;
+  width: 100%;
+  max-width: 350px; 
+  height: 200px;    
+  background: #151515; 
+  border: 1px solid rgba(255, 255, 255, 0.05); 
+  border-radius: 16px;
+  padding: 2rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.client-card:hover .client-logo {
+  border-color: rgba(212, 0, 0, 0.4); 
+  background: #1a1a1a;
 }
 
 .client-logo-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: grayscale(1) brightness(1.4);
+  filter: grayscale(1) brightness(1.2);
   transition: filter 0.4s ease;
 }
 
@@ -82,7 +114,7 @@
 }
 
 .client-name {
-  font-size: 0.9375rem;
+  font-size: 1.25rem; 
   font-weight: 700;
   letter-spacing: 0.05em;
   color: #ffffff;
@@ -90,10 +122,10 @@
 }
 
 .client-category {
-  font-size: 0.75rem;
+  font-size: 0.9rem; 
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #737373;
+  color: #888;
   text-align: center;
 }

@@ -23,23 +23,23 @@ export default function LangHomePage({
       {/* ===== HERO ===== */}
       <section className="home-hero">
         <div className="hero-content">
-          <span className="hero-kicker">CREATIVE STUDIO</span>
+          <span className="hero-kicker">{t(lang, "homeHeroTitle1")}</span>
           <h1 className="hero-title">
-            A SPACE <br /> FOR <span className="text-red">CREATORS</span>
+            {t(lang, "homeHeroTitle2")} <br /> {t(lang, "homeHeroTitle3")} <span className="text-red">{t(lang, "homeHeroTitle4")}</span>
           </h1>
           <p className="hero-subtitle">VINI · VIDI · VICI</p>
 
           <div className="hero-actions">
             {/* Explore leads to Services (VINI) */}
             <Link href={`/${lang}/vini`} className="btn-primary">
-              EXPLORE THE STUDIO →
+              {t(lang, "exploreStudio")} →
             </Link>
             {/* Watch Video button */}
             <button 
               className="btn-video" 
               onClick={() => setVideoOpen(true)}
             >
-              <span className="play-icon">▶</span> WATCH THE VIDEO
+              <span className="play-icon">▶</span> {t(lang, "watchVideo")}
             </button>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function LangHomePage({
       {/* ===== PILLARS (Our Services) ===== */}
       <section className="home-pillars">
         <div className="section-header">
-          <h2 className="section-title">OUR SERVICES</h2>
+          <h2 className="section-title">{t(lang, "ourServices")}</h2>
         </div>
         
         <div className="pillars-grid">
