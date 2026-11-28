@@ -10,8 +10,8 @@ from app.platform.errors import (
     Conflict,
     Forbidden,
     NotFound,
-    Unauthorized,
     ServiceUnavailable,
+    Unauthorized,
 )
 
 

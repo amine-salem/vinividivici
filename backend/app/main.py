@@ -5,12 +5,15 @@ import structlog
 from fastapi import FastAPI
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from app.platform.api import operation_id
 from app.platform.config import Settings, get_settings
 from app.platform.db import build_engine, build_session_factory
 from app.platform.errors import register_error_handlers
 from app.platform.health import router as health_router
 from app.platform.logs import configure_logging
 from app.platform.request_context import request_context_middleware
+
+from app.modules.vini.public import router as vini_public_router
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -40,6 +43,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         redoc_url=None,
         openapi_url="/api/v1/openapi.json" if show_docs else None,
         lifespan=lifespan,
+        generate_unique_id_function=operation_id
     )
     app.state.settings = settings
     app.state.engine = engine
@@ -47,4 +51,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     register_error_handlers(app)
     app.add_middleware(BaseHTTPMiddleware, dispatch=request_context_middleware)
     app.include_router(health_router, prefix="/api")
+    app.include_router(vini_public_router, prefix="/api/v1")
     return app
