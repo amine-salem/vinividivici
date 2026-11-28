@@ -187,3 +187,96 @@
     color: #ffffff;
     background: none;
 }
+
+/* ===== Mobile Menu Button ===== */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 100; /* Stay above the mobile menu */
+  padding: 0.5rem;
+  color: inherit;
+}
+
+.hamburger {
+  width: 24px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor; /* Takes black on white header, white on dark header */
+  transition: all 0.3s ease;
+}
+
+/* Hamburger Animation to 'X' */
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ===== Mobile Responsiveness ===== */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block; /* Show hamburger on mobile */
+  }
+
+  /* Transform the nav into a full-screen overlay */
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0a0a0a; /* Dark background */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    z-index: 90;
+    
+    /* Hidden by default, slides in when open */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+  }
+
+  .site-nav.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Make mobile nav links big and white */
+  .site-nav a {
+    font-size: 2rem;
+    color: #ffffff !important; /* Force white text on mobile overlay */
+  }
+
+  /* Make sure logo and actions stay above the overlay */
+  .logo, .site-actions {
+    position: relative;
+    z-index: 100; 
+  }
+
+  /* When menu is open, force the logo/actions to be white for visibility */
+  .site-header:has(.site-nav.is-open) .logo,
+  .site-header:has(.site-nav.is-open) .site-actions {
+    color: #ffffff !important;
+  }
+}

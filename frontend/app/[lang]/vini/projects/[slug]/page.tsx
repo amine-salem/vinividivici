@@ -1,14 +1,93 @@
-export default async function ProjectPage({
+"use client";
+
+import Link from "next/link";
+import { use } from "react";
+import { t, type Lang } from "@/lib/i18n";
+import { mockProjects } from "@/lib/mock-vini";
+
+export default function ProjectPage({
   params,
 }: {
   params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { lang, slug } = await params;
+  const resolvedParams = use(params);
+  const lang = resolvedParams.lang as Lang;
+  const slug = resolvedParams.slug;
+
+  // Find the project that matches the URL slug
+  const project = mockProjects.find((p) => p.slug === slug);
+
+  // If the project doesn't exist, show a 404-style message
+  if (!project) {
+    return (
+      <div className="project-not-found" style={{ minHeight: "60vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+        <h1>Project not found</h1>
+        <Link href={`/${lang}/vini`} className="btn-primary" style={{ marginTop: "2rem" }}>
+          Back to Studio
+        </Link>
+      </div>
+    );
+  }
+
+  const title = lang === "fr" ? project.title_fr : project.title_ar;
+  const category = lang === "fr" ? project.category_fr : project.category_ar;
 
   return (
-    <div>
-      <h1>Project: {slug}</h1>
-      <p>Language: {lang}</p>
+    <div className="project-detail-page">
+      {/* Hero Section */}
+      <div className="project-hero" style={{ backgroundImage: `url(${project.coverImage})` }}>
+        <div className="project-hero-overlay">
+          <span className="vini-kicker">{category}</span>
+          <h1 className="project-title">{title}</h1>
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="project-content">
+        
+        {/* Video Embed (If it exists) */}
+        {project.videoUrl && (
+          <div className="project-video-wrapper">
+            <iframe
+              src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}`}
+              title={title}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+
+        {/* Info Section */}
+        <div className="project-info">
+          <h2>About this project</h2>
+          <p>
+            We worked closely with the client to capture the essence of their brand. 
+            This project focused on high-quality visuals and a compelling narrative that 
+            resonates with their target audience.
+          </p>
+        </div>
+
+        {/* Photo Gallery Grid */}
+        {project.images && project.images.length > 0 && (
+          <div className="project-gallery">
+            <h3 className="gallery-title">Gallery</h3>
+            <div className="gallery-grid">
+              {project.images.map((img, index) => (
+                <div key={index} className="gallery-item">
+                  <img src={img} alt={`${title} - image ${index + 1}`} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div>
+          <Link href={`/${lang}/vini`} className="btn-outline">
+            ← Back to Portfolio
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -22,10 +22,14 @@ export default async function LangLayout({
   const dir = RTL_LANGS.has(typedLang) ? "rtl" : "ltr";
 
   return (
-    <div dir={dir} lang={typedLang} className="site-wrapper">
-      <Header lang={typedLang} />
-      <main className="site-main">{children}</main>
-      <Footer />
-    </div>
+    <html lang={typedLang} dir={dir} suppressHydrationWarning>
+      <body>
+        <div  className="site-wrapper">
+          <Header lang={typedLang} />
+          <main className="site-main">{children}</main>
+          <Footer />
+        </div>
+      </body>
+    </html>
   );
 }

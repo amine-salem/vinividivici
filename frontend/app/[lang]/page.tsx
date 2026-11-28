@@ -6,6 +6,8 @@ import { useState, use } from "react"; // <--- Import 'use'
 import { t, type Lang } from "@/lib/i18n";
 import { Clients } from "@/components/Clients";
 
+export const dynamic = 'force-dynamic';
+
 export default function LangHomePage({
   params,
 }: {
@@ -64,13 +66,13 @@ export default function LangHomePage({
             href={`/${lang}/vini`}
             title="VINI"
             tagline={t(lang, "viniTagline")}
-            image="/pillars/vini.jpg"
+            image="/pillars/vini1.jpeg"
           />
           <Pillar
             href={`/${lang}/vidi`}
             title="VIDI"
             tagline={t(lang, "vidiTagline")}
-            image="/pillars/vini.jpeg"
+            image="/pillars/vidi.jpeg"
           />
           <Pillar
             href={`/${lang}/vici`}

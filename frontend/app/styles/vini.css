@@ -1,0 +1,425 @@
+/* ===== VINI PAGE ===== */
+.vini-page {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+
+/* VINI Hero */
+.vini-hero {
+  position: relative;
+  min-height: 85vh; /* Slightly shorter than homepage hero so users know to scroll */
+  
+  /* Break out of the main padding */
+  margin-top: -4rem;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw;
+  
+  padding: 14rem 4rem 6rem;
+  display: flex;
+  align-items: center;
+  
+  /* Placeholder background. You can change this to a specific photo later */
+  background-color: #0a0a0a;
+  background-image: url("/vini-hero.jpg"); /* Using your hero image for now */
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .vini-hero {
+    padding: 8rem 2rem 4rem;
+  }
+}
+
+/* Dark gradient overlay so text is readable */
+.vini-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vini-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.vini-kicker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d40000;
+  margin-bottom: 1.5rem;
+}
+
+/* The small red line above the kicker */
+.vini-kicker::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: #d40000;
+}
+
+.vini-title {
+  font-family: var(--font-display), "Helvetica Neue", sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.vini-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #b5b5b5;
+  max-width: 500px;
+  margin: 0 0 3rem;
+}
+
+.vini-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ===== VINI INQUIRY FORM ===== */
+.vini-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.vini-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .vini-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vini-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vini-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a3a3a3;
+}
+
+/* Base styles for all inputs */
+.vini-field input,
+.vini-field select,
+.vini-field textarea {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  color-scheme: dark; /* Forces dark mode for native dropdowns */
+}
+
+.vini-field input:focus,
+.vini-field select:focus,
+.vini-field textarea:focus {
+  outline: none;
+  border-color: #d40000; /* Red focus ring */
+}
+
+.vini-field input::placeholder,
+.vini-field textarea::placeholder {
+  color: #555;
+}
+
+/* Custom Select Arrow & Dark Options */
+.vini-field select {
+  appearance: none; /* Removes the default browser arrow */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  padding-right: 2.5rem; /* Make room for the arrow */
+  cursor: pointer;
+}
+
+/* Style the dropdown options to be dark */
+.vini-field select option {
+  background-color: #111;
+  color: #fff;
+}
+
+/* RTL (Arabic) fix for the select arrow */
+[dir="rtl"] .vini-field select {
+  background-position: left 1rem center;
+  padding-right: 1rem;
+  padding-left: 2.5rem;
+}
+
+/* Custom Scrollbar for textarea */
+.vini-field textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.vini-field textarea::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.vini-field textarea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.vini-field textarea::-webkit-scrollbar-thumb:hover {
+  background: #d40000;
+}
+
+/* ===== VINI SERVICES ===== */
+.vini-services {
+  padding: 100px 5%;
+  background-color: #050505; /* Slightly darker than the portfolio */
+  color: #ffffff;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.service-card-vini {
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card-vini:hover {
+  transform: translateY(-5px);
+  border-color: #d40000; /* Red border on hover */
+}
+
+.service-card-vini h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.service-card-vini p {
+  color: #a3a3a3;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ===== VINI PORTFOLIO ===== */
+.vini-portfolio {
+  padding: 100px 5%;
+  background-color: #0a0a0a; /* Dark background */
+  color: #ffffff;
+}
+
+.portfolio-header {
+  margin-bottom: 3rem;
+}
+
+.portfolio-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.portfolio-card {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/3; /* Keeps all images the same shape */
+  cursor: pointer;
+}
+
+.portfolio-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hover effect: Zoom in on the image */
+.portfolio-card:hover .portfolio-image {
+  transform: scale(1.05);
+}
+
+/* The dark gradient and text at the bottom */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-type {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #d40000; /* Red text */
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-item-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ===== PROJECT DETAIL PAGE ===== */
+.project-detail-page {
+  background: #0a0a0a;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+.project-hero {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.project-hero-overlay {
+  width: 100%;
+  padding: 4rem 5%;
+  background: linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.7) 50%, transparent 100%);
+}
+
+.project-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0.5rem 0 0;
+  text-transform: uppercase;
+}
+
+.project-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.project-video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+.project-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.project-info h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.project-info p {
+  color: #a3a3a3;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-color: #d40000;
+  color: #d40000;
+}
+
+/* Not found state */
+.project-not-found {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  color: #fff;
+  gap: 2rem;
+}
